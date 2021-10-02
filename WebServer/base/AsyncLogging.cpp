@@ -32,7 +32,7 @@ void AsyncLogging::append(const char* logline, int len) {
         buffers_.push_back(currentBuffer_);
         currentBuffer_.reset();
         if(nextBuffer_)
-            currentbuffer_ = std::move(nextBuffer_);
+            currentBuffer_ = std::move(nextBuffer_);
         else
             currentBuffer_.reset(new Buffer);
         currentBuffer_->append(logline, len);
@@ -96,7 +96,7 @@ void AsyncLogging::threadFunc() {
             assert(!buffersToWrite.empty());
             newBuffer2 = buffersToWrite.back();
             buffersToWrite.pop_back();
-            newBUffer2->reset();
+            newBuffer2->reset();
         }
 
         buffersToWrite.clear();

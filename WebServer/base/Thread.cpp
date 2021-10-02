@@ -75,7 +75,7 @@ Thread::Thread(const ThreadFunc& func, const string& n)
         setDefaultName();
     }
 
-Thread::~thread() {
+Thread::~Thread() {
     if(started_ && !joined_) pthread_detach(pthreadId_);
 }
 
@@ -87,10 +87,10 @@ void Thread::setDefaultName() {
     }
 }
 
-void thread::start() {
+void Thread::start() {
     assert(!started_);
     started_ =true;
-    threadData* data = new ThreadData(func_, name_, &tid_, &latch_);
+    ThreadData* data = new ThreadData(func_, name_, &tid_, &latch_);
     if(pthread_create(&pthreadId_, NULL, &startThread, data)) {
         started_ =false;
         delete data;

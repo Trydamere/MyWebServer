@@ -30,4 +30,4 @@ class Thread : noncopyable {
         ThreadFunc func_;
         std::string name_;
         CountDownLatch latch_;
-}
+};

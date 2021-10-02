@@ -26,4 +26,4 @@ class LogFile : noncopyable {
         int count_;
         std::unique_ptr<MutexLock> mutex_;
         std::unique_ptr<AppendFile> file_;
-}
+};

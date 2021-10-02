@@ -2,6 +2,7 @@
 // @Email yilong.huang@outlook.com
 #pragma once
 #include <assert.h>
+#include <string.h>
 #include <string>
 #include "noncopyable.h"
 
@@ -89,7 +90,7 @@ class LogStream : noncopyable {
         }
 
         void append(const char* data, int len) { buffer_.append(data, len);}
-        const Buffer& buffer() cosnt {return buffer_; }
+        const Buffer& buffer() const {return buffer_; }
         void resetBuffer() {buffer_.reset(); }
 
     private:

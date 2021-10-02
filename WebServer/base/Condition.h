@@ -11,7 +11,7 @@
 class Condition : noncopyable {
     public:
         explicit Condition(MutexLock &mutex) : mutex_(mutex){
-            pthread_cond_init(&cond, NULL);
+            pthread_cond_init(&cond_, NULL);
         }
         ~Condition() {pthread_cond_destroy(&cond_); }
         void wait() {pthread_cond_wait(&cond_, mutex_.get()); }

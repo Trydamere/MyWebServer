@@ -18,9 +18,9 @@ size_t convert(char buf[], T value) {
     char* p = buf;
 
     do {
-        int 1sd = static_cast<int>(i%10);
+        int lsd = static_cast<int>(i%10);
         i/=10;
-        *p++ = zero[1sd];
+        *p++ = zero[lsd];
     }   while  (i!=0);
 
     if(value < 0) {
