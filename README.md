@@ -1,10 +1,12 @@
 # MyWebServer
 
-
+  
 
 
 
 ## 项目介绍
+
+  
 
 
 
@@ -12,9 +14,13 @@
 
 系统测试中，对每个模块进行单元测试，使用webbench对系统进行压力测试，测试结果显示服务器可以实现上万并发连接数据交换。
 
+  
+
 
 
 ## 技术点
+
+  
 
 
 
@@ -28,35 +34,63 @@
 - 使用状态机解析了HTTP请求,支持管线化
 - 支持优雅关闭连接  
 
+  
+
 
 
 ## 项目开发过程
 
+  
+
 
 
 ### 完成base部分
+
   
-  
+
 
 
 #### 完成noncopyable
 
+  
+
+
+
 实现：将拷贝构造函数和拷贝运算符私有
+
+  
 
 
 
 #### 完成MutexLock MutexLockGuard
 
+  
+
+
+
 实现：对mutex操作进行封装
+
+  
 
 
 
 #### 完成condition(条件变量)
 
+  
+
+
+
 实现：对pthread_cond进行封装
+
+  
+
 
 
 #### 完成CountDownLatch
+
+  
+
+
 
 使用互斥量，条件变量，计数实现
 
@@ -64,15 +98,27 @@
 > 1.主线程发起多个子线程，等这些子线程各自都完成一定的任务之后，主线程才继续执行。通常用于主线程等待多个子线程完成初始化。（主线程等多线程完成）
 > 2.主线程发起多个子线程，子线程都等待主线程，主线程完成其他一些任务之后通知所有子线程开始执行。通常用于多个子线程等待主线程发出“起跑”命令。（多线程等主线程完成）
 
+  
+
 
 
 #### 完成CurrentThread
 
+  
+
+
+
 __thread变量是每个线程有一份独立实体，各个线程的变量值互不干扰。
+
+  
 
 
 
 #### 完成Thread
+
+  
+
+
 
 ```
 进程pid: getpid()                 
@@ -82,51 +128,79 @@ __thread变量是每个线程有一份独立实体，各个线程的变量值互
 
 thread::start()方法中assert(tid_>0); 判断线程tid合法
 
+  
+
 
 
 #### 完成FileUtil
 
+  
+
+
+
 O_CLOEXEC作用：文件描述符在fork或者fork+exec之后默认打开，使用这个标志位可以关闭文件描述符
+
+  
 
 
 
 #### 完成LogFile
 
+  
+
+
+
 输出到文件
+
+  
 
 
 
 #### 完成Logstream
 
+  
+
 
 
 参考muduo
+
+  
 
 
 
 #### 完成AsyncLogging
 
+  
+
 
 
 参考muduo
+
+  
 
 
 
 #### 完成logging
 
+  
+
 
 
 参考muduo
 
-
-
-#### 完成单元测试  
-
+  
 
 
 
+#### 完成单元测试
 
-#### 完成util  
+  
+
+
+
+#### 完成util
+
+  
 
 
 
@@ -140,23 +214,31 @@ SIGPIPE是一个进程尝试写一个关闭写或不连接的socket
 sigaction(SIGPIPE, &(struct sigaction){SIG_IGN}, NULL);
 ```
 
+  
+
 
 
 TCP_NODELAY选项是用来控制是否开启Nagle算法
+
+  
 
 
 
 SO_LINGER选项用来设置延迟关闭的时间，等待套接字发送缓冲区中的数据发送完成。没有设置该选项时，在调用close()后，在发送完FIN后会立即进行一些清理工作并返回。如果设置SO_LINGER选项，并且等待时间为正值，则在清理之前会等待一段时间。
 
-
-
-#### 完成Timer  
-
+  
 
 
 
+#### 完成Timer
 
-#### 完成HttpData  
+  
+
+
+
+#### 完成HttpData
+
+  
 
 
 
@@ -190,9 +272,13 @@ H_END_CR: 遇到\n，状态转移到H_END_LF
 
 H_END_LF: 更新状态，退出
 
+  
+
 
 
 如果状态不是H_END_LF，则需要再次读入
+
+  
 
 
 
@@ -208,53 +294,79 @@ Content-Length : sizeof sbuf
 
 传文件，打开文件描述符，通过mmap将文件映射到内存
 
+  
+
 
 
 #### 完成Channel
 
+  
+
 
 
 参考muduo
+
+  
 
 
 
 #### 完成Epoll
 
+  
+
 
 
 参考muduo
+
+  
 
 
 
 #### 完成EventLoop
 
+  
+
 
 
 参考muduo
+
+  
 
 
 
 #### 完成EventLoopThread
 
+  
+
 
 
 参考muduo
+
+  
 
 
 
 #### 完成EventLoopThreadPool
 
+  
+
 
 
 EventLoopthread 的线程池
+
+  
 
 
 
 #### 完成Server.h
 
+  
+
 
 
 ## 项目困难：
+
+  
 
 
 
@@ -266,6 +378,3 @@ EventLoopthread 的线程池
 
 - 报文消息报头较小，第一次传输后，需要更新传输长度，传输长度置成0
 - 每次传输后都要更新下次传输的文件起始位置和长度
-
-
-
