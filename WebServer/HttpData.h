@@ -111,4 +111,4 @@ class HttpData : public std::enable_shared_from_this<HttpData> {
         URIState parseURI();
         HeaderState parseHeaders();
         AnalysisState analysisRequest();
-}
+};

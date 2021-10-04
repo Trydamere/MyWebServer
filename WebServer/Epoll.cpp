@@ -20,9 +20,8 @@ using namespace std;
 const int EVENTSNUM = 4096;
 const int EPOLLWAIT_TIME = 10000;
 
-typedef shared_ptr<Channel> SP_Channel;
 
-Epoll::Epoll() :epollFd_(epoll_create1(EPOLL_CLOEXEC), events_(EVENTSNUM)) {
+Epoll::Epoll() :epollFd_(epoll_create1(EPOLL_CLOEXEC)), events_(EVENTSNUM) {
     assert(epollFd_ > 0);
 }
 

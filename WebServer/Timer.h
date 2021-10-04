@@ -5,6 +5,7 @@
 #include <deque>
 #include <memory>
 #include <queue>
+#include "HttpData.h"
 #include "base/MutexLock.h"
 #include "base/noncopyable.h"
 
@@ -19,7 +20,7 @@ class TimerNode {
         bool isValid();
         void clearReq();
         void setDeleted() {deleted_ = true; }
-        vool isDeleted() const {return deleted_; }
+        bool isDeleted() const {return deleted_; }
         size_t getExpTime() const {return expiredTime_; }
 
     private:

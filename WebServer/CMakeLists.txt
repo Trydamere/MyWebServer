@@ -1,4 +1,3 @@
-add_subdirectory(base)
 set(SRCS
     Channel.cpp
     Epoll.cpp

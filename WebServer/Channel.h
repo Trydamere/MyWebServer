@@ -83,7 +83,7 @@ class Channel {
 
         void setRevents(__uint32_t ev) {revents_ = ev; }
 
-        voi setEvents(__uint32_t ev) {events_ = ev; }
+        void setEvents(__uint32_t ev) {events_ = ev; }
         __uint32_t &getEvents() {return events_; }
 
         bool EqualAndUpdateLastEvents() {

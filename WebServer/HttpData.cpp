@@ -155,7 +155,7 @@ void HttpData::seperateTimer() {
 void HttpData::handleRead() {
     __uint32_t &events_ = channel_->getEvents();
     do {
-        bool zero = =false;
+        bool zero = false;
         int read_num = readn(fd_, inBuffer_, zero);
         LOG << "Request: " << inBuffer_;
         if (connectionState_ == H_DISCONNECTING) {
